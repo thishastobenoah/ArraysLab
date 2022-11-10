@@ -3,19 +3,44 @@ import java.util.Arrays;
 public class StudentDatabase {
 	public static void main (String[]args) {
 		int selection = 0;
+		char loopYN;
+		boolean repeat = true;
 		Scanner userInput = new Scanner(System.in);
 		String [] students ={"studentA","studentB","studentC","studentD","studentE","studentF","studentG","studentH","studentI","studentJ"};
 		String [] hometown ={"hometownA","hometownB","hometownC","hometownD","hometownE","hometownF","hometownG","hometown","hometownI","hometownJ"};
-		String [] favfood ={"favfoodA","favfoodB","favfoodC","favfoodD","favfoodE","favfoodF","favfoodG","favfoodH","favfoodI","favfoodJ"};
-		try {
-			System.out.print("Choose a student(1-10):");
-			selection = userInput.nextInt();
-		}catch(ArrayIndexOutOfBoundsException e) {
-			
-		}
-		
-		
-		
+		String [] fav_food ={"favfoodA","favfoodB","favfoodC","favfoodD","favfoodE","favfoodF","favfoodG","favfoodH","favfoodI","favfoodJ"};
+		while (repeat){
+			try {
+				do {
+				char response = 'y';
+				char continueYN;
+				char continueYN2;
+				System.out.print("Choose a student(1-10):");
+				selection = userInput.nextInt();
+				System.out.println("That student is:" + students[selection - 1]);
+				System.out.println("Would you like to know more?(Y/N):");
+				continueYN = userInput.next().charAt(0);
+				if (continueYN == 'y' || continueYN == 'Y') {
+					System.out.println("They are from:" + hometown[selection - 1]);
+					System.out.println("Would you like to know more?(Y/N):");
+					continueYN2 = userInput.next().charAt(0);
+					if (continueYN2 == 'y' || continueYN2 == 'Y') {
+						System.out.println("Their favorite food is:" + fav_food[selection - 1]);
+						System.out.println("Learn about another student? Y/N:");
+						loopYN = userInput.next().charAt(0);
+					}else {System.out.println("Ok!");
+						repeat = false;}
+				}else {System.out.println("Ok!");
+					repeat = false;}
+				System.out.println("Learn about another student?(Y/N):");
+				loopYN = userInput.next().charAt(0);
+				}while(loopYN == 'y' || loopYN == 'Y');
+			}catch(ArrayIndexOutOfBoundsException e) {
+				System.out.println("That is not a valid selection.");
+				repeat = true;
+			}
+	}
+		System.out.println("Goodbye!");
 	}
 }
 
